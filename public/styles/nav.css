@@ -1,0 +1,33 @@
+.nav-bar {
+  height: 120px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #4056A1;
+  color: #FFFFFF;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.nav-icon {
+  font-family: 'Bungee', sans-serif;
+}
+
+.nav-tweet {
+  height: 100%;
+  padding-bottom: 0.5em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-arrow {
+  color: #FF0000;
+}
