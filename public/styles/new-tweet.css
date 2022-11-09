@@ -1,5 +1,6 @@
 .new-tweet {
   width: 100%;
+  max-width: 550px;
   font-weight: bold;
 
   display: flex;

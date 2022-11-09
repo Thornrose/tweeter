@@ -1,11 +1,12 @@
 .tweet {
   width: 66%;
+  max-width: 600px;
+  margin-bottom: 1em;
   padding-left: 3%;
   padding-right: 3%;
   border-style: solid;
   border-color: #545149;
   border-width: .2em;
-
   
 
   display: flex;
@@ -25,6 +26,13 @@
 
 .tweet-avatar {
   padding-top: 3%;
+
+  display: flex;
+  align-items: center;
+}
+
+.tweet-avatar img{
+  margin-right: 0.5em;
 }
 
 .tweet-handle {
