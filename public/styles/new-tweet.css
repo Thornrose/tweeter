@@ -34,3 +34,7 @@
   color: #FFFFFF;
   border-style: none;
 }
+
+.tweet-invalid {
+  color: #FF0000
+}
