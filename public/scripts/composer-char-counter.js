@@ -1,5 +1,5 @@
 
-console.log("composer-char-counter script loaded successfully");
+// console.log("composer-char-counter script loaded successfully");
 
 
 $(document).ready(function() {
