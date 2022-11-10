@@ -15,7 +15,7 @@ $(document).ready(function() {
       </header>
       <p>${tweet.content.text}</p>
       <footer>
-        <div class="tweet-date">${tweet.created_at}</div>
+        <div class="tweet-date">${timeago.format(tweet.created_at)}</div>
         <div class="tweet-icons">
           <i class="fa-solid fa-flag"></i>
           <i class="fa-solid fa-retweet"></i>
@@ -29,9 +29,10 @@ $(document).ready(function() {
   };
   
   const renderTweets = function(tweetArray) { // array of tweet objects
+    $('#tweet-list').empty();
     for (const tweet of tweetArray) {
       const $newTweet = createTweetElement(tweet);
-      $('#container').append($newTweet);
+      $('#tweet-list').prepend($newTweet);
     }
   };
 
@@ -42,20 +43,33 @@ $(document).ready(function() {
     });
   };
 
-  loadTweets();
+  
 
   $('form').submit(function(event) {
     event.preventDefault();
-    const newText = $(this).serialize();
-    $.ajax({
-      type: 'POST',
-      url: '/tweets/',
-      data: newText
-    });
-    this.reset();
+    const tweetInput = this.children[1].value;
+    if (!tweetInput) {
+      alert("empty submission!");
+    } else if (tweetInput.length > 140) {
+      alert("tweet is too long!")
+    } else {
 
+      const newText = $(this).serialize();
+      $.ajax({
+        type: 'POST',
+        url: '/tweets/',
+        data: newText
+      })
+      .then(() => loadTweets())
+      .catch((error) => console.log("error: ", error));
+      this.reset();
+    }
+
+
+   // $('#container').load('/tweets/');
 
   });
 
+  loadTweets();
 
 });

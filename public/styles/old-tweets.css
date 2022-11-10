@@ -1,3 +1,12 @@
+#tweet-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
 .tweet {
   width: 66%;
   max-width: 600px;
