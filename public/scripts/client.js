@@ -7,6 +7,7 @@
 $(document).ready(function() {
 
   const createTweetElement = function(tweet) {
+
     let $tweet = `
     <article class="tweet">
       <header>
@@ -28,31 +29,40 @@ $(document).ready(function() {
     return $tweet;
   };
   
+
   const renderTweets = function(tweetArray) { // array of tweet objects
-    $('#tweet-list').empty();
+
+    $('#tweet-list').empty(); // clear previous list whenever function is called, otherwise list will duplicate
+
     for (const tweet of tweetArray) {
       const $newTweet = createTweetElement(tweet);
       $('#tweet-list').prepend($newTweet);
     }
+
   };
 
+
   const loadTweets = function() {
+
     $.ajax('/tweets', {method: 'GET'})
     .then(function (allTweets) {
       renderTweets(allTweets);
     });
+
   };
 
-  
 
   $('form').submit(function(event) {
+
     event.preventDefault();
     const tweetInput = this.children[1].value;
+
     if (!tweetInput) {
       alert("empty submission!");
     } else if (tweetInput.length > 140) {
       alert("tweet is too long!")
-    } else {
+
+    } else { // happy path
 
       const newText = $(this).serialize();
       $.ajax({
@@ -60,16 +70,13 @@ $(document).ready(function() {
         url: '/tweets/',
         data: newText
       })
-      .then(() => loadTweets())
+      .then(() => loadTweets())   // secondary tweet loading after new submission
       .catch((error) => console.log("error: ", error));
       this.reset();
     }
 
-
-   // $('#container').load('/tweets/');
-
   });
 
-  loadTweets();
+  loadTweets(); // initial tweet loading
 
 });

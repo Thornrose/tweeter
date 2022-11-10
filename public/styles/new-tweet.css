@@ -11,19 +11,20 @@
 #tweet-text {
   width: 100%;
   background-color: #f4f1ec;
-  font-weight: bold;
-  
   margin-top: 5px;
+
+  font-weight: bold;
   border-color: #545149;
   border-style: none;
   border-bottom-style: solid;
   border-width: .2em;
-  resize: none;
 
+  resize: none;
 }
 
 .tweet-footer {
   width: 100%;
+
   font-family: 'Bungee', sans-serif;
 
   display: flex;
@@ -31,9 +32,9 @@
 }
 
 .tweet-footer button {
+  border-style: none;
   background-color: #4056A1;
   color: #FFFFFF;
-  border-style: none;
 }
 
 .tweet-invalid {
