@@ -6,6 +6,12 @@
 
 $(document).ready(function() {
 
+  const escape = function(string) { // escape function to protect against cross-site scripting
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(string));
+    return div.innerHTML;
+  };
+
   const createTweetElement = function(tweet) {
 
     let $tweet = `
@@ -14,7 +20,7 @@ $(document).ready(function() {
         <div class="tweet-avatar"><img src="${tweet.user.avatars}"> ${tweet.user.name}</div>
         <div class="tweet-handle">${tweet.user.handle}</div>
       </header>
-      <p>${tweet.content.text}</p>
+      <p>${escape(tweet.content.text)}</p>
       <footer>
         <div class="tweet-date">${timeago.format(tweet.created_at)}</div>
         <div class="tweet-icons">
@@ -45,9 +51,9 @@ $(document).ready(function() {
   const loadTweets = function() {
 
     $.ajax('/tweets', {method: 'GET'})
-    .then(function (allTweets) {
-      renderTweets(allTweets);
-    });
+      .then(function(allTweets) {
+        renderTweets(allTweets);
+      });
 
   };
 
@@ -60,7 +66,7 @@ $(document).ready(function() {
     if (!tweetInput) {
       alert("empty submission!");
     } else if (tweetInput.length > 140) {
-      alert("tweet is too long!")
+      alert("tweet is too long!");
 
     } else { // happy path
 
@@ -70,8 +76,8 @@ $(document).ready(function() {
         url: '/tweets/',
         data: newText
       })
-      .then(() => loadTweets())   // secondary tweet loading after new submission
-      .catch((error) => console.log("error: ", error));
+        .then(() => loadTweets())   // secondary tweet loading after new submission
+        .catch((error) => console.log("error: ", error));
       this.reset();
     }
 
