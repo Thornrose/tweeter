@@ -57,40 +57,54 @@ $(document).ready(function() {
 
   };
 
-  const errorSlide = function() { // helper function for error conditions. still need it to slide UP afterwards.
-    $('#tweet-error').slideDown({
+  const errorSlide = function(message) { // helper function for error conditions. still need it to slide UP afterwards.
+    $('.error-message').text(message ? message : null);
+
+    if (!message) {
+      return  $('#tweet-error').slideUp('slow');
+    }
+
+
+    !$('#tweet-error').is(':visible') && $('#tweet-error').slideDown({
       start: function() {
         $(this).css({
           display: 'flex'
         })
       },
       duration: 'slow'});
+      
+     
+
+      // setTimeout(() => { // this could be one option, and remove other slide-up further down. but then chaining errors gets wonky
+      //   $('#tweet-error').slideUp('slow');
+      // }, 5000);
   };
 
 
   $('form').submit(function(event) {
 
     const tweetInput = this.children[1].value;
-    const errorText = this.previousElementSibling.children[1].innerHTML;
+    // const errorText = this.previousElementSibling.children[1].innerHTML;
 
     event.preventDefault();
-    if (errorText.length > 0) {
-      $('#tweet-error').slideUp('slow');
-    } else {
-      $('#tweet-error').hide();
-    }
+
+    // if (errorText.length > 0) { // issue here, error text changing before slideUp occurs
+    //   $('#tweet-error').slideUp('slow'); // cound add function to make display invisible?
+    // } else {
+    //   $('#tweet-error').hide(); // I thought i needed this to run first? but maybe i fixed it elsewhere...
+    // }
 
     if (!tweetInput) {
-      $('.error-message').text("Too short! please enter a message to post.");
-      errorSlide();
+      // $('.error-message').text("Too short! please enter a message to post.");
+      errorSlide("Too short! please enter a message to post.");
       
     }  else if (tweetInput.length > 140) {
-      $('.error-message').text("Too long! please respect the 140 character limit.");
-      errorSlide();
+      // $('.error-message').text("Too long! please respect the 140 character limit.");
+      errorSlide("Too long! please respect the 140 character limit.");
 
      } else { // happy path
 
-
+      errorSlide();
 
       const newText = $(this).serialize();
       $.ajax({
