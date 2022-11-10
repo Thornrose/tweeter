@@ -51,7 +51,11 @@
     <!-- Page-specific (main) content here -->
     <main id="container">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
+        <span id="tweet-error" class="hide">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span class="error-message"></span>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </span>
         <form action="/tweets/" method="post">
           <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
@@ -63,6 +67,7 @@
       </section>
       <br>
       <section id="tweet-list"></section>
+      <!-- article template for listed tweets - within #tweet-list section -->
       <!-- <article class="tweet">
         <header>
           <div class="tweet-avatar">avatar</div>

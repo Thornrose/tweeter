@@ -1,11 +1,32 @@
 .new-tweet {
   width: 100%;
   max-width: 550px;
+  margin-top: 0.5em;
   font-weight: bold;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#tweet-error {
+  width: 100%;
+  padding: 0.2em;
+  margin: 1em;
+  border-color: #FF0000;
+  border-style: solid;
+  border-width: .2em;
+  color: #FF0000;
+  font-weight: lighter;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+#tweet-error.hide {
+  display: none;
 }
 
 #tweet-text {
@@ -36,6 +57,7 @@
   background-color: #4056A1;
   color: #FFFFFF;
 }
+
 
 .tweet-invalid {
   color: #FF0000

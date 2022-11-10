@@ -57,18 +57,40 @@ $(document).ready(function() {
 
   };
 
+  const errorSlide = function() { // helper function for error conditions. still need it to slide UP afterwards.
+    $('#tweet-error').slideDown({
+      start: function() {
+        $(this).css({
+          display: 'flex'
+        })
+      },
+      duration: 'slow'});
+  };
+
 
   $('form').submit(function(event) {
 
-    event.preventDefault();
     const tweetInput = this.children[1].value;
+    const errorText = this.previousElementSibling.children[1].innerHTML;
+
+    event.preventDefault();
+    if (errorText.length > 0) {
+      $('#tweet-error').slideUp('slow');
+    } else {
+      $('#tweet-error').hide();
+    }
 
     if (!tweetInput) {
-      alert("empty submission!");
-    } else if (tweetInput.length > 140) {
-      alert("tweet is too long!");
+      $('.error-message').text("Too short! please enter a message to post.");
+      errorSlide();
+      
+    }  else if (tweetInput.length > 140) {
+      $('.error-message').text("Too long! please respect the 140 character limit.");
+      errorSlide();
 
-    } else { // happy path
+     } else { // happy path
+
+
 
       const newText = $(this).serialize();
       $.ajax({
@@ -80,6 +102,7 @@ $(document).ready(function() {
         .catch((error) => console.log("error: ", error));
       this.reset();
     }
+    
 
   });
 
