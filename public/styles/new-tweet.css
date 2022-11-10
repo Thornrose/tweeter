@@ -1,12 +1,16 @@
 .new-tweet {
   width: 100%;
-  max-width: 550px;
   margin-top: 0.5em;
   font-weight: bold;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
+}
+
+.new-tweet form {
+  width: 100%;
 }
 
 #tweet-error {

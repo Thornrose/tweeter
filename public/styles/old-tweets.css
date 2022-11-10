@@ -8,11 +8,10 @@
 }
 
 .tweet {
-  width: 66%;
-  max-width: 600px;
+  width: 100%;
   margin-bottom: 1em;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding-left: .7em;
+  padding-right: .7em;
 
   border-style: solid;
   border-color: #545149;
