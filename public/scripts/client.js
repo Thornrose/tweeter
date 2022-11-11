@@ -57,15 +57,16 @@ $(document).ready(function() {
 
   };
 
-  const errorSlide = function(message) { // helper function for error conditions. still need it to slide UP afterwards.
-    $('.error-message').text(message ? message : null);
+  const errorSlide = function(message) { // helper function for error conditions. takes in custom error message
 
-    if (!message) {
+    $('.error-message').text(message ? message : null); // if no error message has been set, removes any previous error message
+
+    if (!message) { // if no message has been set (happy-path condition), slides up error message box.
       return  $('#tweet-error').slideUp('slow');
     }
-
-
-    !$('#tweet-error').is(':visible') && $('#tweet-error').slideDown({
+    
+    $('#tweet-error').hide(); // if multiple errors happen in succession, this hide & slideDown ensures new error message is presented for each error.
+    $('#tweet-error').slideDown({
       start: function() {
         $(this).css({
           display: 'flex'
@@ -73,38 +74,22 @@ $(document).ready(function() {
       },
       duration: 'slow'});
       
-     
-
-      // setTimeout(() => { // this could be one option, and remove other slide-up further down. but then chaining errors gets wonky
-      //   $('#tweet-error').slideUp('slow');
-      // }, 5000);
   };
 
 
   $('form').submit(function(event) {
-
     const tweetInput = this.children[1].value;
-    // const errorText = this.previousElementSibling.children[1].innerHTML;
-
     event.preventDefault();
 
-    // if (errorText.length > 0) { // issue here, error text changing before slideUp occurs
-    //   $('#tweet-error').slideUp('slow'); // cound add function to make display invisible?
-    // } else {
-    //   $('#tweet-error').hide(); // I thought i needed this to run first? but maybe i fixed it elsewhere...
-    // }
-
     if (!tweetInput) {
-      // $('.error-message').text("Too short! please enter a message to post.");
       errorSlide("Too short! please enter a message to post.");
       
     }  else if (tweetInput.length > 140) {
-      // $('.error-message').text("Too long! please respect the 140 character limit.");
       errorSlide("Too long! please respect the 140 character limit.");
 
      } else { // happy path
 
-      errorSlide();
+      errorSlide(); // sets message to null and slides up
 
       const newText = $(this).serialize();
       $.ajax({
@@ -117,7 +102,6 @@ $(document).ready(function() {
       this.reset();
     }
     
-
   });
 
   loadTweets(); // initial tweet loading
