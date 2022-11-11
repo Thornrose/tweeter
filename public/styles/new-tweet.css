@@ -1,3 +1,4 @@
+/* tweet composer styles */
 .new-tweet {
   width: 100%;
   margin-top: 0.5em;
@@ -15,18 +16,17 @@
 
 #tweet-error {
   width: 100%;
-  padding: 0.2em;
   margin: 1em;
-  border-color: #FF0000;
+  padding: 0.2em;
   border-style: solid;
   border-width: .2em;
+  border-color: #FF0000;
   color: #FF0000;
   font-weight: lighter;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
 
 #tweet-error.hide {
@@ -35,21 +35,18 @@
 
 #tweet-text {
   width: 100%;
-  background-color: #f4f1ec;
   margin-top: 5px;
-
-  font-weight: bold;
-  border-color: #545149;
   border-style: none;
   border-bottom-style: solid;
   border-width: .2em;
-
+  border-color: #545149;
+  background-color: #f4f1ec;
+  font-weight: bold;
   resize: none;
 }
 
 .tweet-footer {
   width: 100%;
-
   font-family: 'Bungee', sans-serif;
 
   display: flex;
