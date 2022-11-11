@@ -4,14 +4,17 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function (!!!)
  */
 
+// all code contained within document-ready function
 $(document).ready(function() {
 
-  const escape = function(string) { // escape function to protect against cross-site scripting
+  // escape function to protect against cross-site scripting
+  const escape = function(string) {
     let div = document.createElement('div');
     div.appendChild(document.createTextNode(string));
     return div.innerHTML;
   };
 
+  // function to create tweet with HTML article format
   const createTweetElement = function(tweet) {
 
     let $tweet = `
@@ -35,7 +38,7 @@ $(document).ready(function() {
     return $tweet;
   };
   
-
+  // tweet renderer app, making use of createTweetElement above
   const renderTweets = function(tweetArray) { // array of tweet objects
 
     $('#tweet-list').empty(); // clear previous list whenever function is called, otherwise list will duplicate
@@ -44,10 +47,9 @@ $(document).ready(function() {
       const $newTweet = createTweetElement(tweet);
       $('#tweet-list').prepend($newTweet);
     }
-
   };
 
-
+  // ajax function to load/reload tweet database and render it
   const loadTweets = function() {
 
     $.ajax('/tweets', {method: 'GET'})
@@ -56,8 +58,9 @@ $(document).ready(function() {
       });
 
   };
-
-  const errorSlide = function(message) { // helper function for error conditions. takes in custom error message
+  
+  // helper function for error conditions. takes in custom error message
+  const errorSlide = function(message) {
 
     $('.error-message').text(message ? message : null); // if no error message has been set, removes any previous error message
 
@@ -66,17 +69,16 @@ $(document).ready(function() {
     }
     
     $('#tweet-error').hide(); // if multiple errors happen in succession, this hide & slideDown ensures new error message is presented for each error.
-    $('#tweet-error').slideDown({
+    $('#tweet-error').slideDown({ // not the simplest syntax, but had to find something to get around slideDown having display: block style as default
       start: function() {
         $(this).css({
           display: 'flex'
-        })
+        });
       },
       duration: 'slow'});
-      
   };
 
-
+  // tweet form submitter
   $('form').submit(function(event) {
     const tweetInput = this.children[1].value;
     event.preventDefault();
@@ -87,8 +89,7 @@ $(document).ready(function() {
     }  else if (tweetInput.length > 140) {
       errorSlide("Too long! please respect the 140 character limit.");
 
-     } else { // happy path
-
+    } else { // happy path
       errorSlide(); // sets message to null and slides up
 
       const newText = $(this).serialize();
@@ -97,13 +98,12 @@ $(document).ready(function() {
         url: '/tweets/',
         data: newText
       })
-        .then(() => loadTweets())   // secondary tweet loading after new submission
+        .then(() => loadTweets())   // secondary tweet database loading after new submission
         .catch((error) => console.log("error: ", error));
       this.reset();
     }
-    
   });
 
-  loadTweets(); // initial tweet loading
-
+  // primary tweet database loading
+  loadTweets();
 });

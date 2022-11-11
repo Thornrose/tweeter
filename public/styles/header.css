@@ -20,7 +20,7 @@ h2 > span {
     width: 30%;
     margin-top: 90px;
     margin-left: 1.5rem;
-    padding: 10px;
+    padding-top: 15px;
 
     flex-grow: 2;
   }

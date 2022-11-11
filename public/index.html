@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="./styles/header.css" type="text/css" />
     <link rel="stylesheet" href="./styles/new-tweet.css" type="text/css" />
-    <link rel="stylesheet" href="./styles/old-tweets.css" type="text/css" />
+    <link rel="stylesheet" href="./styles/tweets-list.css" type="text/css" />
     <!-- External JS: jQuery, timeago libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" 
@@ -52,7 +52,7 @@
       <section class="new-tweet">
         <span id="tweet-error" class="hide">
           <i class="fa-solid fa-triangle-exclamation"></i>
-          <span class="error-message">test!</span>
+          <span class="error-message"></span>
           <i class="fa-solid fa-triangle-exclamation"></i>
         </span>
         <form action="/tweets/" method="post">
@@ -66,7 +66,7 @@
       </section>
       <br>
       <section id="tweet-list"></section>
-      <!-- article template for listed tweets - within #tweet-list section -->
+      <!-- article template for listed tweets - see client.js createTweetElement function -->
       <!-- <article class="tweet">
         <header>
           <div class="tweet-avatar">avatar</div>

@@ -1,11 +1,7 @@
-
-// console.log("composer-char-counter script loaded successfully");
-
-
+// tweet character counter update function
 $(document).ready(function() {
   
-
-  $("#tweet-text").on("input", function(event) {
+  $("#tweet-text").on("input", function() {
 
     const maximumCharacters = 140;
     const counterElement = this.nextElementSibling.children[1];
@@ -21,6 +17,5 @@ $(document).ready(function() {
 
   });
   
-
 });
 
