@@ -3,8 +3,8 @@
 Tweeter is a simple, single-page AJAX-based Twitter clone that uses jQuery, HTML and CSS - this dev's first swim in the front-end pool. The back-end functionality for this particular project was given as a template to work from.
 
 ## Final Product
-!["Desktop display"](https://github.com/Thornrose/tweeter/blob/master/docs/desktop-example.png?raw=true)
-!["Mobile display"](https://github.com/Thornrose/tweeter/blob/master/docs/mobile-example.png?raw=true)
+<img src="https://github.com/Thornrose/tweeter/blob/master/docs/desktop-example.png?raw=true" alt="desktop display" width="1000"/>
+<img src="https://github.com/Thornrose/tweeter/blob/master/docs/mobile-example.png?raw=true" alt="mobile display" width="1000"/>
 
 ## Getting Started
 
