@@ -1,9 +1,10 @@
 .nav-bar {
   height: 120px;
   width: 100%;
-  position: fixed;
+  position: relative;
   top: 0;
-  /* background-color: #4056A1; */
+  background-color: #65c4c7;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
   color: #FFFFFF;
   padding-left: 1.5em;
   padding-right: 1.5em;
@@ -36,6 +37,9 @@
 
   .nav-bar {
     background-color: #4056A1;
+    background-image: none;
+    position: fixed;
+    top: 0;
   }
 
 }
